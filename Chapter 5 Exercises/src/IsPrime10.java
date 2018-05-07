@@ -15,9 +15,7 @@ public class IsPrime10 extends ConsoleProgram {
 		if (n > 0) {
 			int i = 2;
 			while (result) {
-				println(i);
 				result = !(n % i == 0);
-				println(result);
 				i++;
 				if (i == n) break;
 			}
