@@ -14,7 +14,8 @@ public class Quiz5 extends ConsoleProgram {
 			int wrongAnswerPlus = 0;
 			int wrongAnswerMinus = 0;
 			
-			String correctAnswer = randomMessage(); //6
+			 //6
+			String correctAnswer = randomMessage();
 			if(randomReaction()) {
 				while (answerPlus >= 20) {
 					firstNumber = randomFirstNumber();
