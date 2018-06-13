@@ -3,6 +3,7 @@ import acm.util.*;
 
 public class Atoms4 extends ConsoleProgram {
 	public void run() {
+		
 		totalAtoms = 10000;
 		totalAtomsAfter = 10000;
 		println("There are " + totalAtoms + " atoms initialy");
