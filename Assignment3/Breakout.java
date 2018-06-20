@@ -99,11 +99,7 @@ public class Breakout extends GraphicsProgram {
 				BALL_RADIUS, BALL_RADIUS);
 		ball.setFilled(true);
 		add(ball);
-		
-		
-		
 
-		
 		while (true) {			
 			ball.move(vx, vy);	
 			pause(PAUSE_TIME);
@@ -217,6 +213,27 @@ public class Breakout extends GraphicsProgram {
 		paddle.setFilled(true);
 		add(paddle);
 	}
+	
+	private GObject getCollidingObject() {
+		if (getElementAt(ball.getX(), 
+				ball.getY()) != null) {
+			return getElementAt(ball.getX(), 
+					ball.getY());
+		} else if (getElementAt(ball.getX(), 
+				ball.getY() + (BALL_RADIUS)) != null) {
+			return (getElementAt(ball.getX(), 
+					ball.getY() + (BALL_RADIUS)));	
+		} else if (getElementAt(ball.getX() + (BALL_RADIUS), 
+				ball.getY()) != null) {
+			return getElementAt(ball.getX() + (BALL_RADIUS), 
+					ball.getY());		
+		} else if (getElementAt(ball.getX() + (BALL_RADIUS),
+				ball.getY() + (BALL_RADIUS)) != null) {
+			return getElementAt(ball.getX() + (BALL_RADIUS),
+					ball.getY() + (BALL_RADIUS));	
+		}	
+		return null;
+	}
 
 	/* Moving with mouse and repositioning paddle */	
 	public void mouseMoved(MouseEvent e) {
@@ -245,7 +262,6 @@ public class Breakout extends GraphicsProgram {
 		tempVY = vy;
 		vy = 0;
 		vx = 0;
-		
 	}
 	
 	public void mouseEntered(MouseEvent e) {
@@ -253,28 +269,7 @@ public class Breakout extends GraphicsProgram {
 		vy = tempVY;
 	}
 	
-	private GObject getCollidingObject() {
-		if (getElementAt(ball.getX(), 
-				ball.getY()) != null) {
-			return getElementAt(ball.getX(), 
-					ball.getY());
-		} else if (getElementAt(ball.getX(), 
-				ball.getY() + (BALL_RADIUS)) != null) {
-			return (getElementAt(ball.getX(), 
-					ball.getY() + (BALL_RADIUS)));	
-		} else if (getElementAt(ball.getX() + (BALL_RADIUS), 
-				ball.getY()) != null) {
-			return getElementAt(ball.getX() + (BALL_RADIUS), 
-					ball.getY());		
-		} else if (getElementAt(ball.getX() + (BALL_RADIUS),
-				ball.getY() + (BALL_RADIUS)) != null) {
-			return getElementAt(ball.getX() + (BALL_RADIUS),
-					ball.getY() + (BALL_RADIUS));	
-		}	
-		return null;
-	}
-
-	/* Instance variable of the paddle */
+	/* Instance variables */
 	private GRect paddle;
 	private GOval ball;
 	private double vx, vy;
