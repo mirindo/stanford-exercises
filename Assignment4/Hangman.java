@@ -14,6 +14,12 @@ import java.util.ArrayList;
 
 public class Hangman extends ConsoleProgram {
 
+	 public void init() {
+		 setSize(1000, 1000);
+         canvas = new HangmanCanvas();
+         add(canvas);
+	}
+	 
     public void run() {
 		/* You fill this in */
     	
@@ -22,7 +28,12 @@ public class Hangman extends ConsoleProgram {
     	for (int i = 0; i < resolution.length(); i++) word += "-";
     	guessCount = 8;
  
+    	canvas.reset();
+    	canvas.displayWord(word);
+    	
+    	
     	/* Start game */
+    	
     	newGame();
 	}
     
@@ -38,8 +49,8 @@ public class Hangman extends ConsoleProgram {
     			println("You have only one guess left.");
     		}        	
     		
-    		/* Only for trying the program */
-//        	println(resolution);
+    		/* Only for testing the program */
+        	println(resolution);
         	
         	guess = readLine("Your guess: ");
         	ch = guess.charAt(0);
@@ -78,6 +89,7 @@ public class Hangman extends ConsoleProgram {
 	        		}
 	        	} else {
 	        		println("The are no " + ch + "'s in the word.");
+	        		canvas.noteIncorrectGuess(ch);
 	        	}
         	}
         	
@@ -100,16 +112,27 @@ public class Hangman extends ConsoleProgram {
     	
     }
     
-    /* check if the character player gives is not multiple characters or a number */
+    /* check if the character player gives is not multiple characters or a number or empty*/
     private void isNotValidCharacter() {
     	while ((guess.length() != 1) || (Character.isDigit(ch))){
     		println("You entered invalid character.");
     		guess = readLine("Please, enter single character: ");
     		ch = guess.charAt(0);
     	}
+    	while (ch == ' ') {
+    		println("You entered empty character.");
+    		guess = readLine("Please, enter single character: ");
+    		ch = guess.charAt(0);
+    	}
+//    	while (guess.isEmpty()) {
+//    		println("You entered empty character.");
+//    		guess = readLine("Please, enter single character: ");
+//    		ch = guess.charAt(0);
+//    	}
     }
     
-   
+    private HangmanCanvas canvas;
+    
     private String resolution;
     private int guessCount;
     private String word = "";
