@@ -24,11 +24,12 @@ public class Hangman extends ConsoleProgram {
 		/* You fill this in */
     	
     	/* Set up the game */
-    	resolution = lexicon.getWord(rgen.nextInt(0, 9));
+    	resolution = lexicon.getWord(rgen.nextInt(0, lexicon.getWordCount() - 1));
     	for (int i = 0; i < resolution.length(); i++) word += "-";
     	guessCount = 8;
  
     	canvas.reset();
+    	
     	canvas.displayWord(word);
     	
     	
@@ -76,7 +77,7 @@ public class Hangman extends ConsoleProgram {
 	        		String tempString1 = word.substring(0, index1);
 	        		String tempString2 = word.substring(index1 + 1);
 	        		word = tempString1 + ch + tempString2;
-	        		
+	        		canvas.displayWord(word);
 	        		/* Check for more same character */
 	        		int a = 1;
 	        		while (resolution.indexOf(ch, index1 + a) > -1) {
@@ -85,6 +86,8 @@ public class Hangman extends ConsoleProgram {
 	        			tempString2 = word.substring(index2 + 1);
 	        			word = tempString1 + ch + tempString2;
 	        			a++;
+//	        			canvas.remove(word);
+	        			canvas.displayWord(word);
 	        			if (a > resolution.length()) break;
 	        		}
 	        	} else {

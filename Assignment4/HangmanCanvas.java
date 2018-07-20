@@ -45,6 +45,7 @@ public class HangmanCanvas extends GCanvas {
 	public void displayWord(String word) {
 		/* You fill this in */
 		wordOnCanvas = new GLabel(word, 125, 650);
+		wordOnCanvas.setFont("Courier-24");
 		add(wordOnCanvas);
 	}
 
@@ -163,6 +164,7 @@ public class HangmanCanvas extends GCanvas {
 
 		incorrect += letter;
 		incorrectLetters = new GLabel(incorrect, 125, 800);
+		incorrectLetters.setFont("Courier-24");
 		add(incorrectLetters);
 	}
 
